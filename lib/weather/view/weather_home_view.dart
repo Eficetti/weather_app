@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:slide_up_panel/slide_up_panel.dart';
+import 'package:weather_app/weather/cubit/weather_cubit.dart';
+import 'package:weather_app/weather/cubit/weather_state.dart';
 import 'package:weather_app/weather/widgets/weather_home_tile_component.dart';
-import 'package:weather_app/weather/widgets/weather_hourly_tile.dart';
-import 'package:weather_app/weather/location_finder/widgets/weather_location_tile.dart';
-import 'package:weather_app/weather/widgets/weather_search_bar.dart';
+import 'package:weather_app/weather/widgets/weather_information.dart';
 
 class WeatherHomePage extends StatelessWidget {
   const WeatherHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const WeatherHomeView();
+    return BlocProvider(
+      create: (context) => WeatherCubit(),
+      child: const WeatherHomeView(),
+    );
   }
 }
 
@@ -18,48 +23,78 @@ class WeatherHomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date = DateTime.now();
-    final searchController = TextEditingController();
+    final minHeight = MediaQuery.of(context).size.height * 0.4;
+    final maxHeight = MediaQuery.of(context).size.height * 0.8;
 
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Container(
-        constraints: BoxConstraints.expand(),
-        // height: double.infinity,
-        // width: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
-            fit: BoxFit.cover, // -> 02
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // WeatherHourlyTile(
-            //   time: date,
-            //   temperature2m: 20,
-            //   weatherCode: 30,
-            // ),
-            // WeatherSearchBar(
-            //   searchController: searchController,
-            // ),
-            // WeatherLocationTile(
-            //   weatherCode: 30,
-            //   locationName: 'Bengaluru, India',
-            //   temperature2m: 19,
-            //   highTemperature: 24,
-            //   lowTemperature: 18,
-            // ),
-            // WeatherHomeTile(
-            //   locationName: 'Bengaluru',
-            //   temperature: 19,
-            //   weatherState: 'Mostly Clear',
-            //   highTemperature: 24,
-            //   lowTemperature: 18,
-            // ),
+    context.read<WeatherCubit>().getWeatherByLocation('Argentina');
+    context.read<WeatherCubit>().getWeatherForecast();
+
+    return Container(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF362A84),
+            Color(0xFF5936B4),
           ],
         ),
+      ),
+      child: BlocBuilder<WeatherCubit, WeatherState>(
+        builder: (context, state) {
+          if (state.status.isAttempting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (state.status.isFailure) {
+            return Center(
+              child: Text(state.failure ?? ''),
+            );
+          }
+
+          return SlideUpPanel(
+            rounded: true,
+            backGroundWidget: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: Padding(
+                padding: const EdgeInsets.only(left: 120, right: 115, top: 101),
+                child: WeatherHomeTile(
+                  locationName: state.weather?.name ?? '',
+                  weatherState: state.weather?.weather.first.description ?? '',
+                  highTemperature: state.weather?.main.temp_max?.toInt() ?? 0,
+                  lowTemperature: state.weather?.main.temp_min?.toInt() ?? 0,
+                  temperature: state.weather?.main.temp?.toInt() ?? 0,
+                ),
+              ),
+            ),
+            sliderWidget: Container(
+              height: 584,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFF48319D),
+                    Color(0xFF1F1D47),
+                  ],
+                ),
+              ),
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                body: SingleChildScrollView(
+                  child: WeatherInformation(
+                    weatherForecast: state.weatherList ?? [],
+                  ),
+                ),
+              ),
+            ),
+            maxHeight: maxHeight,
+            minHeight: minHeight,
+            collapseOnBackgroundTap: true,
+          );
+        },
       ),
     );
   }

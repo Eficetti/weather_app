@@ -11,7 +11,7 @@ class WeatherLocationTile extends StatelessWidget {
     super.key,
   });
 
-  final int weatherCode;
+  final String weatherCode;
   final String locationName;
   final int temperature2m;
   final int highTemperature;
@@ -54,7 +54,7 @@ class WeatherLocationTile extends StatelessWidget {
                     children: [
                       Text(
                         'H: $highTemperature°',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                         ),
                       ),
@@ -63,7 +63,7 @@ class WeatherLocationTile extends StatelessWidget {
                       ),
                       Text(
                         'L: $lowTemperature°',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.grey,
                         ),
                       ),
@@ -86,7 +86,11 @@ class WeatherLocationTile extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 40),
                       child: Text(
-                        '$weatherCode',
+                        weatherCode,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],

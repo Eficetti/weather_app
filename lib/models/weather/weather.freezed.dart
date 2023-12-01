@@ -20,15 +20,21 @@ Weather _$WeatherFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Weather {
-  double get latitude => throw _privateConstructorUsedError;
-  double get longitude => throw _privateConstructorUsedError;
-  double get elevation => throw _privateConstructorUsedError;
-  double get generationTimeMs => throw _privateConstructorUsedError;
-  int get utcOffsetSeconds => throw _privateConstructorUsedError;
-  String get timezone => throw _privateConstructorUsedError;
-  String get timezoneAbbreviation => throw _privateConstructorUsedError;
-  List<WeatherHourly> get hourly => throw _privateConstructorUsedError;
-  List<HourlyUnits> get hourlyUnits => throw _privateConstructorUsedError;
+  List<WeatherElement> get weather => throw _privateConstructorUsedError;
+  Main get main => throw _privateConstructorUsedError;
+  int get visibility => throw _privateConstructorUsedError;
+  Wind get wind => throw _privateConstructorUsedError;
+  Clouds get clouds => throw _privateConstructorUsedError;
+  int get dt => throw _privateConstructorUsedError;
+  Sys get sys => throw _privateConstructorUsedError;
+  Coord? get coord => throw _privateConstructorUsedError;
+  String? get base => throw _privateConstructorUsedError;
+  int? get timezone => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  int? get cod => throw _privateConstructorUsedError;
+  @JsonKey(name: 'dt_txt')
+  DateTime? get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,15 +47,26 @@ abstract class $WeatherCopyWith<$Res> {
       _$WeatherCopyWithImpl<$Res, Weather>;
   @useResult
   $Res call(
-      {double latitude,
-      double longitude,
-      double elevation,
-      double generationTimeMs,
-      int utcOffsetSeconds,
-      String timezone,
-      String timezoneAbbreviation,
-      List<WeatherHourly> hourly,
-      List<HourlyUnits> hourlyUnits});
+      {List<WeatherElement> weather,
+      Main main,
+      int visibility,
+      Wind wind,
+      Clouds clouds,
+      int dt,
+      Sys sys,
+      Coord? coord,
+      String? base,
+      int? timezone,
+      int? id,
+      String? name,
+      int? cod,
+      @JsonKey(name: 'dt_txt') DateTime? date});
+
+  $MainCopyWith<$Res> get main;
+  $WindCopyWith<$Res> get wind;
+  $CloudsCopyWith<$Res> get clouds;
+  $SysCopyWith<$Res> get sys;
+  $CoordCopyWith<$Res>? get coord;
 }
 
 /// @nodoc
@@ -65,54 +82,123 @@ class _$WeatherCopyWithImpl<$Res, $Val extends Weather>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latitude = null,
-    Object? longitude = null,
-    Object? elevation = null,
-    Object? generationTimeMs = null,
-    Object? utcOffsetSeconds = null,
-    Object? timezone = null,
-    Object? timezoneAbbreviation = null,
-    Object? hourly = null,
-    Object? hourlyUnits = null,
+    Object? weather = null,
+    Object? main = null,
+    Object? visibility = null,
+    Object? wind = null,
+    Object? clouds = null,
+    Object? dt = null,
+    Object? sys = null,
+    Object? coord = freezed,
+    Object? base = freezed,
+    Object? timezone = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? cod = freezed,
+    Object? date = freezed,
   }) {
     return _then(_value.copyWith(
-      latitude: null == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      elevation: null == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
-              as double,
-      generationTimeMs: null == generationTimeMs
-          ? _value.generationTimeMs
-          : generationTimeMs // ignore: cast_nullable_to_non_nullable
-              as double,
-      utcOffsetSeconds: null == utcOffsetSeconds
-          ? _value.utcOffsetSeconds
-          : utcOffsetSeconds // ignore: cast_nullable_to_non_nullable
+      weather: null == weather
+          ? _value.weather
+          : weather // ignore: cast_nullable_to_non_nullable
+              as List<WeatherElement>,
+      main: null == main
+          ? _value.main
+          : main // ignore: cast_nullable_to_non_nullable
+              as Main,
+      visibility: null == visibility
+          ? _value.visibility
+          : visibility // ignore: cast_nullable_to_non_nullable
               as int,
-      timezone: null == timezone
+      wind: null == wind
+          ? _value.wind
+          : wind // ignore: cast_nullable_to_non_nullable
+              as Wind,
+      clouds: null == clouds
+          ? _value.clouds
+          : clouds // ignore: cast_nullable_to_non_nullable
+              as Clouds,
+      dt: null == dt
+          ? _value.dt
+          : dt // ignore: cast_nullable_to_non_nullable
+              as int,
+      sys: null == sys
+          ? _value.sys
+          : sys // ignore: cast_nullable_to_non_nullable
+              as Sys,
+      coord: freezed == coord
+          ? _value.coord
+          : coord // ignore: cast_nullable_to_non_nullable
+              as Coord?,
+      base: freezed == base
+          ? _value.base
+          : base // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as String,
-      timezoneAbbreviation: null == timezoneAbbreviation
-          ? _value.timezoneAbbreviation
-          : timezoneAbbreviation // ignore: cast_nullable_to_non_nullable
-              as String,
-      hourly: null == hourly
-          ? _value.hourly
-          : hourly // ignore: cast_nullable_to_non_nullable
-              as List<WeatherHourly>,
-      hourlyUnits: null == hourlyUnits
-          ? _value.hourlyUnits
-          : hourlyUnits // ignore: cast_nullable_to_non_nullable
-              as List<HourlyUnits>,
+              as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cod: freezed == cod
+          ? _value.cod
+          : cod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MainCopyWith<$Res> get main {
+    return $MainCopyWith<$Res>(_value.main, (value) {
+      return _then(_value.copyWith(main: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WindCopyWith<$Res> get wind {
+    return $WindCopyWith<$Res>(_value.wind, (value) {
+      return _then(_value.copyWith(wind: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CloudsCopyWith<$Res> get clouds {
+    return $CloudsCopyWith<$Res>(_value.clouds, (value) {
+      return _then(_value.copyWith(clouds: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SysCopyWith<$Res> get sys {
+    return $SysCopyWith<$Res>(_value.sys, (value) {
+      return _then(_value.copyWith(sys: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CoordCopyWith<$Res>? get coord {
+    if (_value.coord == null) {
+      return null;
+    }
+
+    return $CoordCopyWith<$Res>(_value.coord!, (value) {
+      return _then(_value.copyWith(coord: value) as $Val);
+    });
   }
 }
 
@@ -124,15 +210,31 @@ abstract class _$$WeatherImplCopyWith<$Res> implements $WeatherCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {double latitude,
-      double longitude,
-      double elevation,
-      double generationTimeMs,
-      int utcOffsetSeconds,
-      String timezone,
-      String timezoneAbbreviation,
-      List<WeatherHourly> hourly,
-      List<HourlyUnits> hourlyUnits});
+      {List<WeatherElement> weather,
+      Main main,
+      int visibility,
+      Wind wind,
+      Clouds clouds,
+      int dt,
+      Sys sys,
+      Coord? coord,
+      String? base,
+      int? timezone,
+      int? id,
+      String? name,
+      int? cod,
+      @JsonKey(name: 'dt_txt') DateTime? date});
+
+  @override
+  $MainCopyWith<$Res> get main;
+  @override
+  $WindCopyWith<$Res> get wind;
+  @override
+  $CloudsCopyWith<$Res> get clouds;
+  @override
+  $SysCopyWith<$Res> get sys;
+  @override
+  $CoordCopyWith<$Res>? get coord;
 }
 
 /// @nodoc
@@ -146,53 +248,78 @@ class __$$WeatherImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latitude = null,
-    Object? longitude = null,
-    Object? elevation = null,
-    Object? generationTimeMs = null,
-    Object? utcOffsetSeconds = null,
-    Object? timezone = null,
-    Object? timezoneAbbreviation = null,
-    Object? hourly = null,
-    Object? hourlyUnits = null,
+    Object? weather = null,
+    Object? main = null,
+    Object? visibility = null,
+    Object? wind = null,
+    Object? clouds = null,
+    Object? dt = null,
+    Object? sys = null,
+    Object? coord = freezed,
+    Object? base = freezed,
+    Object? timezone = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? cod = freezed,
+    Object? date = freezed,
   }) {
     return _then(_$WeatherImpl(
-      latitude: null == latitude
-          ? _value.latitude
-          : latitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      longitude: null == longitude
-          ? _value.longitude
-          : longitude // ignore: cast_nullable_to_non_nullable
-              as double,
-      elevation: null == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
-              as double,
-      generationTimeMs: null == generationTimeMs
-          ? _value.generationTimeMs
-          : generationTimeMs // ignore: cast_nullable_to_non_nullable
-              as double,
-      utcOffsetSeconds: null == utcOffsetSeconds
-          ? _value.utcOffsetSeconds
-          : utcOffsetSeconds // ignore: cast_nullable_to_non_nullable
+      weather: null == weather
+          ? _value._weather
+          : weather // ignore: cast_nullable_to_non_nullable
+              as List<WeatherElement>,
+      main: null == main
+          ? _value.main
+          : main // ignore: cast_nullable_to_non_nullable
+              as Main,
+      visibility: null == visibility
+          ? _value.visibility
+          : visibility // ignore: cast_nullable_to_non_nullable
               as int,
-      timezone: null == timezone
+      wind: null == wind
+          ? _value.wind
+          : wind // ignore: cast_nullable_to_non_nullable
+              as Wind,
+      clouds: null == clouds
+          ? _value.clouds
+          : clouds // ignore: cast_nullable_to_non_nullable
+              as Clouds,
+      dt: null == dt
+          ? _value.dt
+          : dt // ignore: cast_nullable_to_non_nullable
+              as int,
+      sys: null == sys
+          ? _value.sys
+          : sys // ignore: cast_nullable_to_non_nullable
+              as Sys,
+      coord: freezed == coord
+          ? _value.coord
+          : coord // ignore: cast_nullable_to_non_nullable
+              as Coord?,
+      base: freezed == base
+          ? _value.base
+          : base // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timezone: freezed == timezone
           ? _value.timezone
           : timezone // ignore: cast_nullable_to_non_nullable
-              as String,
-      timezoneAbbreviation: null == timezoneAbbreviation
-          ? _value.timezoneAbbreviation
-          : timezoneAbbreviation // ignore: cast_nullable_to_non_nullable
-              as String,
-      hourly: null == hourly
-          ? _value._hourly
-          : hourly // ignore: cast_nullable_to_non_nullable
-              as List<WeatherHourly>,
-      hourlyUnits: null == hourlyUnits
-          ? _value._hourlyUnits
-          : hourlyUnits // ignore: cast_nullable_to_non_nullable
-              as List<HourlyUnits>,
+              as int?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cod: freezed == cod
+          ? _value.cod
+          : cod // ignore: cast_nullable_to_non_nullable
+              as int?,
+      date: freezed == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -201,54 +328,64 @@ class __$$WeatherImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WeatherImpl implements _Weather {
   const _$WeatherImpl(
-      {required this.latitude,
-      required this.longitude,
-      required this.elevation,
-      required this.generationTimeMs,
-      required this.utcOffsetSeconds,
-      required this.timezone,
-      required this.timezoneAbbreviation,
-      required final List<WeatherHourly> hourly,
-      required final List<HourlyUnits> hourlyUnits})
-      : _hourly = hourly,
-        _hourlyUnits = hourlyUnits;
+      {required final List<WeatherElement> weather,
+      required this.main,
+      required this.visibility,
+      required this.wind,
+      required this.clouds,
+      required this.dt,
+      required this.sys,
+      this.coord,
+      this.base,
+      this.timezone,
+      this.id,
+      this.name,
+      this.cod,
+      @JsonKey(name: 'dt_txt') this.date})
+      : _weather = weather;
 
   factory _$WeatherImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeatherImplFromJson(json);
 
+  final List<WeatherElement> _weather;
   @override
-  final double latitude;
-  @override
-  final double longitude;
-  @override
-  final double elevation;
-  @override
-  final double generationTimeMs;
-  @override
-  final int utcOffsetSeconds;
-  @override
-  final String timezone;
-  @override
-  final String timezoneAbbreviation;
-  final List<WeatherHourly> _hourly;
-  @override
-  List<WeatherHourly> get hourly {
-    if (_hourly is EqualUnmodifiableListView) return _hourly;
+  List<WeatherElement> get weather {
+    if (_weather is EqualUnmodifiableListView) return _weather;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_hourly);
+    return EqualUnmodifiableListView(_weather);
   }
 
-  final List<HourlyUnits> _hourlyUnits;
   @override
-  List<HourlyUnits> get hourlyUnits {
-    if (_hourlyUnits is EqualUnmodifiableListView) return _hourlyUnits;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_hourlyUnits);
-  }
+  final Main main;
+  @override
+  final int visibility;
+  @override
+  final Wind wind;
+  @override
+  final Clouds clouds;
+  @override
+  final int dt;
+  @override
+  final Sys sys;
+  @override
+  final Coord? coord;
+  @override
+  final String? base;
+  @override
+  final int? timezone;
+  @override
+  final int? id;
+  @override
+  final String? name;
+  @override
+  final int? cod;
+  @override
+  @JsonKey(name: 'dt_txt')
+  final DateTime? date;
 
   @override
   String toString() {
-    return 'Weather(latitude: $latitude, longitude: $longitude, elevation: $elevation, generationTimeMs: $generationTimeMs, utcOffsetSeconds: $utcOffsetSeconds, timezone: $timezone, timezoneAbbreviation: $timezoneAbbreviation, hourly: $hourly, hourlyUnits: $hourlyUnits)';
+    return 'Weather(weather: $weather, main: $main, visibility: $visibility, wind: $wind, clouds: $clouds, dt: $dt, sys: $sys, coord: $coord, base: $base, timezone: $timezone, id: $id, name: $name, cod: $cod, date: $date)';
   }
 
   @override
@@ -256,38 +393,42 @@ class _$WeatherImpl implements _Weather {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WeatherImpl &&
-            (identical(other.latitude, latitude) ||
-                other.latitude == latitude) &&
-            (identical(other.longitude, longitude) ||
-                other.longitude == longitude) &&
-            (identical(other.elevation, elevation) ||
-                other.elevation == elevation) &&
-            (identical(other.generationTimeMs, generationTimeMs) ||
-                other.generationTimeMs == generationTimeMs) &&
-            (identical(other.utcOffsetSeconds, utcOffsetSeconds) ||
-                other.utcOffsetSeconds == utcOffsetSeconds) &&
+            const DeepCollectionEquality().equals(other._weather, _weather) &&
+            (identical(other.main, main) || other.main == main) &&
+            (identical(other.visibility, visibility) ||
+                other.visibility == visibility) &&
+            (identical(other.wind, wind) || other.wind == wind) &&
+            (identical(other.clouds, clouds) || other.clouds == clouds) &&
+            (identical(other.dt, dt) || other.dt == dt) &&
+            (identical(other.sys, sys) || other.sys == sys) &&
+            (identical(other.coord, coord) || other.coord == coord) &&
+            (identical(other.base, base) || other.base == base) &&
             (identical(other.timezone, timezone) ||
                 other.timezone == timezone) &&
-            (identical(other.timezoneAbbreviation, timezoneAbbreviation) ||
-                other.timezoneAbbreviation == timezoneAbbreviation) &&
-            const DeepCollectionEquality().equals(other._hourly, _hourly) &&
-            const DeepCollectionEquality()
-                .equals(other._hourlyUnits, _hourlyUnits));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.cod, cod) || other.cod == cod) &&
+            (identical(other.date, date) || other.date == date));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      latitude,
-      longitude,
-      elevation,
-      generationTimeMs,
-      utcOffsetSeconds,
+      const DeepCollectionEquality().hash(_weather),
+      main,
+      visibility,
+      wind,
+      clouds,
+      dt,
+      sys,
+      coord,
+      base,
       timezone,
-      timezoneAbbreviation,
-      const DeepCollectionEquality().hash(_hourly),
-      const DeepCollectionEquality().hash(_hourlyUnits));
+      id,
+      name,
+      cod,
+      date);
 
   @JsonKey(ignore: true)
   @override
@@ -305,36 +446,52 @@ class _$WeatherImpl implements _Weather {
 
 abstract class _Weather implements Weather {
   const factory _Weather(
-      {required final double latitude,
-      required final double longitude,
-      required final double elevation,
-      required final double generationTimeMs,
-      required final int utcOffsetSeconds,
-      required final String timezone,
-      required final String timezoneAbbreviation,
-      required final List<WeatherHourly> hourly,
-      required final List<HourlyUnits> hourlyUnits}) = _$WeatherImpl;
+      {required final List<WeatherElement> weather,
+      required final Main main,
+      required final int visibility,
+      required final Wind wind,
+      required final Clouds clouds,
+      required final int dt,
+      required final Sys sys,
+      final Coord? coord,
+      final String? base,
+      final int? timezone,
+      final int? id,
+      final String? name,
+      final int? cod,
+      @JsonKey(name: 'dt_txt') final DateTime? date}) = _$WeatherImpl;
 
   factory _Weather.fromJson(Map<String, dynamic> json) = _$WeatherImpl.fromJson;
 
   @override
-  double get latitude;
+  List<WeatherElement> get weather;
   @override
-  double get longitude;
+  Main get main;
   @override
-  double get elevation;
+  int get visibility;
   @override
-  double get generationTimeMs;
+  Wind get wind;
   @override
-  int get utcOffsetSeconds;
+  Clouds get clouds;
   @override
-  String get timezone;
+  int get dt;
   @override
-  String get timezoneAbbreviation;
+  Sys get sys;
   @override
-  List<WeatherHourly> get hourly;
+  Coord? get coord;
   @override
-  List<HourlyUnits> get hourlyUnits;
+  String? get base;
+  @override
+  int? get timezone;
+  @override
+  int? get id;
+  @override
+  String? get name;
+  @override
+  int? get cod;
+  @override
+  @JsonKey(name: 'dt_txt')
+  DateTime? get date;
   @override
   @JsonKey(ignore: true)
   _$$WeatherImplCopyWith<_$WeatherImpl> get copyWith =>

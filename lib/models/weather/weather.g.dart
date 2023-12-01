@@ -8,30 +8,42 @@ part of 'weather.dart';
 
 _$WeatherImpl _$$WeatherImplFromJson(Map<String, dynamic> json) =>
     _$WeatherImpl(
-      latitude: (json['latitude'] as num).toDouble(),
-      longitude: (json['longitude'] as num).toDouble(),
-      elevation: (json['elevation'] as num).toDouble(),
-      generationTimeMs: (json['generationTimeMs'] as num).toDouble(),
-      utcOffsetSeconds: json['utcOffsetSeconds'] as int,
-      timezone: json['timezone'] as String,
-      timezoneAbbreviation: json['timezoneAbbreviation'] as String,
-      hourly: (json['hourly'] as List<dynamic>)
-          .map((e) => WeatherHourly.fromJson(e as Map<String, dynamic>))
+      weather: (json['weather'] as List<dynamic>)
+          .map((e) => WeatherElement.fromJson(e as Map<String, dynamic>))
           .toList(),
-      hourlyUnits: (json['hourlyUnits'] as List<dynamic>)
-          .map((e) => HourlyUnits.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      main: Main.fromJson(json['main'] as Map<String, dynamic>),
+      visibility: json['visibility'] as int,
+      wind: Wind.fromJson(json['wind'] as Map<String, dynamic>),
+      clouds: Clouds.fromJson(json['clouds'] as Map<String, dynamic>),
+      dt: json['dt'] as int,
+      sys: Sys.fromJson(json['sys'] as Map<String, dynamic>),
+      coord: json['coord'] == null
+          ? null
+          : Coord.fromJson(json['coord'] as Map<String, dynamic>),
+      base: json['base'] as String?,
+      timezone: json['timezone'] as int?,
+      id: json['id'] as int?,
+      name: json['name'] as String?,
+      cod: json['cod'] as int?,
+      date: json['dt_txt'] == null
+          ? null
+          : DateTime.parse(json['dt_txt'] as String),
     );
 
 Map<String, dynamic> _$$WeatherImplToJson(_$WeatherImpl instance) =>
     <String, dynamic>{
-      'latitude': instance.latitude,
-      'longitude': instance.longitude,
-      'elevation': instance.elevation,
-      'generationTimeMs': instance.generationTimeMs,
-      'utcOffsetSeconds': instance.utcOffsetSeconds,
+      'weather': instance.weather,
+      'main': instance.main,
+      'visibility': instance.visibility,
+      'wind': instance.wind,
+      'clouds': instance.clouds,
+      'dt': instance.dt,
+      'sys': instance.sys,
+      'coord': instance.coord,
+      'base': instance.base,
       'timezone': instance.timezone,
-      'timezoneAbbreviation': instance.timezoneAbbreviation,
-      'hourly': instance.hourly,
-      'hourlyUnits': instance.hourlyUnits,
+      'id': instance.id,
+      'name': instance.name,
+      'cod': instance.cod,
+      'dt_txt': instance.date?.toIso8601String(),
     };

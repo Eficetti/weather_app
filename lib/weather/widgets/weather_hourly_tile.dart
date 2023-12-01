@@ -10,14 +10,16 @@ class WeatherHourlyTile extends StatelessWidget {
 
   final DateTime time;
   final int temperature2m;
-  final int weatherCode;
+  final String weatherCode;
 
   @override
   Widget build(BuildContext context) {
     final isNow = DateTime.now().hour == time.hour;
 
+    final hour = time.hour < 12 ? '${time.hour} AM' : '${time.hour} PM';
+
     return Container(
-      width: 60,
+      width: 65,
       height: 146,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50),
@@ -34,7 +36,11 @@ class WeatherHourlyTile extends StatelessWidget {
               right: 15,
             ),
             child: Text(
-              isNow ? 'Now' : '${time.hour}',
+              isNow ? 'Now' : hour,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 10,
+              ),
             ),
           ),
           const SizedBox(height: 16),
@@ -42,7 +48,11 @@ class WeatherHourlyTile extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 15, right: 15, top: 16),
             child: Text(
-              '$temperature2m °',
+              '$temperature2m°',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
             ),
           ),
         ],

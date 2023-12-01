@@ -10,6 +10,7 @@ class WeatherSunriseComponent extends StatelessWidget {
       width: 166,
       child: Column(
         children: [
+           Text('Sunrise'),
            
         ],
       ),
