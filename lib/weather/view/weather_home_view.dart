@@ -84,6 +84,7 @@ class WeatherHomeView extends StatelessWidget {
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 body: SingleChildScrollView(
+                  physics: const NeverScrollableScrollPhysics(),
                   child: WeatherInformation(
                     weatherForecast: state.weatherList ?? [],
                   ),

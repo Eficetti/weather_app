@@ -70,9 +70,8 @@ class _WeatherLocationFinderViewState extends State<WeatherLocationFinderView> {
               );
             }
 
-            return Container(
+            return SizedBox(
               height: 625,
-              padding: const EdgeInsets.only(left: 25),
               child: ListView.builder(
                 physics: const BouncingScrollPhysics(),
                 itemCount: state.weather.length,
